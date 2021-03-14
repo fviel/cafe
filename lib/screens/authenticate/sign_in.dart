@@ -27,9 +27,9 @@ class _SignInState extends State<SignIn> {
             onPressed: () async {
               dynamic result =  await _auth.signInAnon();
               if(result == null){
-                print('erro no sign in');
+                print('Ocorreu um erro no sign in');
               }else{
-                print('Sign in com sucesso!');
+                print('Sign in anônimo realizado com sucesso!');
                 print(result);
               }
             }),
