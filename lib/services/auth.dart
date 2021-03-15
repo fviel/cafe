@@ -13,6 +13,15 @@ class AuthService{
     return user != null ? User(uid: user.uid):null;
   }
 
+  // Método que vai retornar firebaseUsers sempre que mudar o estado em Authetication
+  //Stream<FirebaseUser> get user{
+  Stream<User> get user{
+    //return _auth.onAuthStateChanged.map((FirebaseUser user) => _userFromFirebaseUser(user));
+
+    //esta linha faz exatamente o mesmoq ue a anterior...
+    return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+  }
+
   //Método para sign in anônimo
   Future signInAnon() async{
     try{
