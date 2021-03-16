@@ -1,4 +1,4 @@
-# cafe - Uma  aplicação Flutter para a gestão de pedidos de Café)
+# Café
 
 Aplicação flutter para a gestão de pedidos de café
 
