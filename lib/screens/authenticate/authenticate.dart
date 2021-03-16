@@ -1,5 +1,6 @@
 import 'package:cafe/screens/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:cafe/screens/authenticate/register.dart';
 
 class Authenticate extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _AuthenticateState extends State<Authenticate> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        child:SignIn(),
+        child:Register(),
       ),
     );
   }

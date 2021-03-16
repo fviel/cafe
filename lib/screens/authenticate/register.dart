@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
 
   final AuthService _auth = new AuthService();
   //text field state
@@ -22,7 +22,7 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: Text(
-          'Sign in to Brew Crew',
+          'Register to Brew Crew',
         ),
       ),
       body: Container(
@@ -49,7 +49,7 @@ class _SignInState extends State<SignIn> {
               RaisedButton(
                 color: Colors.pink[400],
                 child: Text(
-                  'Sign in',
+                  'Register',
                   style: TextStyle(
                     color: Colors.white,
                   ),
