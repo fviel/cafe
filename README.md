@@ -6,21 +6,23 @@ Aplicação flutter para a gestão de pedidos de café
 
 - Login por email e senha;
 - Backeng usando Google Firebase;
-- Vários exemplso de navegação;
+- Vários exemplos de navegação;
 - Exemplos de chamadas assíncronas a serviços;
+- Sign anônimo com firebase
+- Sign out
 
 @fviel
 12/03/2021
 
 
-               Provider
-                 App
-                  |
-               Wrapper
-               /     \
-   Authenticate        Home
-    /      \          /     \   
-SignIn   Register  BrewList Settings
+                   Provider
+                     App
+                      |
+                  Wrapper (Stream)
+                 /       \
+    Authenticate           Home
+        /      \        /        \   
+    SignIn   Register  BrewList Settings
 
 Provider é a forma de passar as mudanças de autenticação identificadas no Stream para o widget root,
 o qual pode passar elas para os nós abaixo...
