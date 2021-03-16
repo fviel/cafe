@@ -11,3 +11,14 @@ Aplicação flutter para a gestão de pedidos de café
 
 @fviel
 12/03/2021
+
+
+               Provider
+                 App
+                  |
+               Wrapper
+               /     \
+   Authenticate        Home
+    /      \          /     \   
+SignIn   Register  BrewList Settings
+
