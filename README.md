@@ -22,3 +22,7 @@ Aplicação flutter para a gestão de pedidos de café
     /      \          /     \   
 SignIn   Register  BrewList Settings
 
+Provider é a forma de passar as mudanças de autenticação identificadas no Stream para o widget root,
+o qual pode passar elas para os nós abaixo...
+"provide a stream data to the root widget..."
+"it's a google recomendation"
