@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
 
 class Register extends StatefulWidget {
+  //criei a funcion como uma var desta classe
+  final Function telaASerExibida;
+
+  //contrutora recebendo a function como um parm
+  Register({this.telaASerExibida});
+
   @override
   _RegisterState createState() => _RegisterState();
 }
+
+//-----------------------
 
 class _RegisterState extends State<Register> {
 
@@ -24,6 +32,14 @@ class _RegisterState extends State<Register> {
         title: Text(
           'Register to Brew Crew',
         ),
+        actions: <Widget>[
+          FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Sign in'),
+              onPressed: () {
+                widget.telaASerExibida();
+              }),
+        ],
       ),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),

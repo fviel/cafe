@@ -8,12 +8,23 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+
+  //var para controle de qual tela vou exibir
+  bool showSignIn = true;
+
+  //Método que apenas inverte o valor de signIn
+  void toggleView(){
+   setState(() {
+     showSignIn = !showSignIn;
+   });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child:Register(),
-      ),
-    );
+    if (showSignIn) {
+      return SignIn(telaASerExibida: toggleView);
+    } else {
+      return Register(telaASerExibida: toggleView);
+    }
   }
 }

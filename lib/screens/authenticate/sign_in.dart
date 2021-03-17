@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
 
 class SignIn extends StatefulWidget {
+
+  //criei a funcion como uma var desta classe
+  final Function telaASerExibida;
+
+  //contrutora recebendo a function como um parm
+  SignIn({this.telaASerExibida});
+
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -24,6 +32,14 @@ class _SignInState extends State<SignIn> {
         title: Text(
           'Sign in to Brew Crew',
         ),
+        actions: <Widget>[
+          FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Register'),
+              onPressed: ()  {
+                widget.telaASerExibida();
+              }),
+        ],
       ),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
