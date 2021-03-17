@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
 import 'package:cafe/shared/constants.dart';
+import 'package:cafe/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
   //criei a funcion como uma var desta classe
@@ -25,9 +26,12 @@ class _SignInState extends State<SignIn> {
   String password = '';
   String error = '';
 
+  //controle se estou exibindo a tela de loading
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -93,10 +97,12 @@ class _SignInState extends State<SignIn> {
                 onPressed: () async {
                   //valida o form baseado no seu estado atual
                   if (_formKey.currentState.validate()) {
+                    setState(() => loading = true);
                     // dynamic result = await _auth.signInAnon();
                     dynamic result = await _auth.siginWithEmailAndPassword(email: email, password: password);
                     if (result == null) {
                       setState(() => error = 'Não é possível fazer o signin com estas credenciais.');
+                      setState(() => loading = false);
                     }
                   } else {
                     print('form inválido');

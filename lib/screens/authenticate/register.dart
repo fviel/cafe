@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
 import 'package:cafe/shared/constants.dart';
+import 'package:cafe/shared/loading.dart';
 
 class Register extends StatefulWidget {
   //criei a funcion como uma var desta classe
@@ -26,9 +27,13 @@ class _RegisterState extends State<Register> {
   String password = '';
   String error = '';
 
+  //controle se estou exibindo a tela de loading
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    //faz um ternário pra decidir se vai mostrar o widget de loading ou a tela
+    return loading ?  Loading() : Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -91,12 +96,14 @@ class _RegisterState extends State<Register> {
                 onPressed: () async {
                   //valida o form baseado no seu estado atual
                   if (_formKey.currentState.validate()) {
+                    //ativa o widget de loading
+                    setState(() => loading = true);
                     dynamic result = await _auth.registerWithEmailAndPassword(email:email, password:password);
                     if(result == null){
-                      setState(() => error = 'Falha ao registrar o usuário.');
-                      // setState(() {
-                      //   error = 'Falha ao registrar o usuário.';
-                      // });
+                      setState(() {
+                        error = 'Falha ao registrar o usuário.';
+                        loading = false;
+                      });
                     }
                     //se não falhou na criação do usuário, a Stream de _auth já notificou o Wrapper e já roteou o usuário pra home...
                   } else {
