@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
+import 'package:cafe/shared/constants.dart';
 
 class Register extends StatefulWidget {
   //criei a funcion como uma var desta classe
@@ -51,6 +52,7 @@ class _RegisterState extends State<Register> {
             child: Column(children: <Widget>[
               SizedBox(height: 20.0),
               TextFormField(
+                decoration: textInputDecorationFernando.copyWith(hintText: 'Email'),
                 //validator é a função que valida o campo
                 validator:(val){
                   if(val.isEmpty){
@@ -69,6 +71,7 @@ class _RegisterState extends State<Register> {
                 height: 20.0,
               ),
               TextFormField(
+                  decoration: textInputDecorationFernando.copyWith(hintText: 'Password'),
                   obscureText: true,
                   //validator é a função que valida o campo
                   validator:(val) => val.length<6 ? 'Informe uma senha acima de 6 chars' :  null,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
+import 'package:cafe/shared/constants.dart';
 
 class SignIn extends StatefulWidget {
   //criei a funcion como uma var desta classe
@@ -50,6 +51,8 @@ class _SignInState extends State<SignIn> {
             child: Column(children: <Widget>[
               SizedBox(height: 20.0),
               TextFormField(
+                //usa a constante que criei lá em shared, mas trocando a var de hint
+                decoration: textInputDecorationFernando.copyWith(hintText: 'Email'),
                 //validator é a função que valida o campo
                 validator: (val) {
                   if (val.isEmpty) {
@@ -68,6 +71,7 @@ class _SignInState extends State<SignIn> {
                 height: 20.0,
               ),
               TextFormField(
+                  decoration: textInputDecorationFernando.copyWith(hintText: 'Password'),
                   obscureText: true,
                   //validator é a função que valida o campo
                   validator: (val) => val.length < 6
