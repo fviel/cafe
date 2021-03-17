@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:cafe/services/auth.dart';
 
 class SignIn extends StatefulWidget {
-
   //criei a funcion como uma var desta classe
   final Function telaASerExibida;
 
   //contrutora recebendo a function como um parm
   SignIn({this.telaASerExibida});
 
-
   @override
   _SignInState createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
-
   //essa globalkey ao form deste widget
   final _formKey = GlobalKey<FormState>();
 
@@ -26,7 +23,6 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +38,7 @@ class _SignInState extends State<SignIn> {
           FlatButton.icon(
               icon: Icon(Icons.person),
               label: Text('Register'),
-              onPressed: ()  {
+              onPressed: () {
                 widget.telaASerExibida();
               }),
         ],
@@ -53,9 +49,10 @@ class _SignInState extends State<SignIn> {
             key: _formKey,
             child: Column(children: <Widget>[
               SizedBox(height: 20.0),
-              TextFormField(//validator é a função que valida o campo
-                validator:(val){
-                  if(val.isEmpty){
+              TextFormField(
+                //validator é a função que valida o campo
+                validator: (val) {
+                  if (val.isEmpty) {
                     return 'Informe um email';
                   }
                   return null;
@@ -73,11 +70,13 @@ class _SignInState extends State<SignIn> {
               TextFormField(
                   obscureText: true,
                   //validator é a função que valida o campo
-                  validator:(val) => val.length<6 ? 'Informe uma senha acima de 6 chars' :  null,
+                  validator: (val) => val.length < 6
+                      ? 'Informe uma senha acima de 6 chars'
+                      : null,
                   onChanged: (val) {
-                //mapeia o conteúdo deste campo na var password
-                setState(() => password = val);
-              }),
+                    //mapeia o conteúdo deste campo na var password
+                    setState(() => password = val);
+                  }),
               SizedBox(height: 20.0),
               RaisedButton(
                 color: Colors.pink[400],
@@ -88,16 +87,13 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 onPressed: () async {
-
                   //valida o form baseado no seu estado atual
                   if (_formKey.currentState.validate()) {
                     // dynamic result = await _auth.signInAnon();
-                    dynamic result = await _auth.registerWithEmailAndPassword(email:email, password:password);
-                    if(result == null){
-                      setState(() => error = 'Falha ao registrar o usuário.');
-
+                    dynamic result = await _auth.siginWithEmailAndPassword(email: email, password: password);
+                    if (result == null) {
+                      setState(() => error = 'Não é possível fazer o signin com estas credenciais.');
                     }
-                    //se não falhou na criação do usuário, a Stream de _auth já notificou o Wrapper e já roteou o usuário pra home...
                   } else {
                     print('form inválido');
                   }
@@ -107,9 +103,9 @@ class _SignInState extends State<SignIn> {
               //exibe a mesg de erro na text abaixo...
               Text(
                 error,
-                style:TextStyle(
+                style: TextStyle(
                   fontSize: 14,
-                  color:Colors.red,
+                  color: Colors.red,
                 ),
               ),
             ]),

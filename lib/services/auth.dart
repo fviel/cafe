@@ -34,20 +34,40 @@ class AuthService {
   }
 
   //método para sigin in com email e pass
-  Future registerWithEmailAndPassword({String email, String password}) async {
+  Future siginWithEmailAndPassword({String email, String password}) async {
     try {
-      AuthResult resultado = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      AuthResult resultado = await _auth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
       FirebaseUser user = resultado.user;
+      print('email: [$email]');
+      print('pwd: [$password]');
       //se sucesso, vai me retornar uma entidade user de entities/user.dart
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
+      print('email: [$email]');
+      print('pwd: [$password]');
       return null;
     }
   }
 
   //registrar como email e pass
+  Future registerWithEmailAndPassword({String email, String password}) async {
+    try {
+      AuthResult resultado = await _auth.createUserWithEmailAndPassword(
+          email: email.trim(), password: password.trim());
+      FirebaseUser user = resultado.user;
+      print('email: [$email]');
+      print('pwd: [$password]');;
+      //se sucesso, vai me retornar uma entidade user de entities/user.dart
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      print('email: [$email]');
+      print('pwd: [$password]');
+      return null;
+    }
+  }
+
 
   //sign out
   Future signOut() async {
