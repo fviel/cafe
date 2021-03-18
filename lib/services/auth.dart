@@ -1,4 +1,5 @@
 import 'package:cafe/entities/user.dart';
+import 'package:cafe/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -56,8 +57,17 @@ class AuthService {
       AuthResult resultado = await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password.trim());
       FirebaseUser user = resultado.user;
+
+      print('registerWithEmailAndPassword - obtiver o user');
+      //cria um document no firestore para o novo uid
+      // DatabaseService dbService = await DatabaseService(uid: user.uid);
+      // dbService.updateUserData('0', 'Novo membro', 100);
+      await DatabaseService(uid: user.uid).updateUserData('0', 'Novo membro', 100);
+      print('registerWithEmailAndPassword - doc do user criado no firebase');
+
+
       print('email: [$email]');
-      print('pwd: [$password]');;
+      print('pwd: [$password]');
       //se sucesso, vai me retornar uma entidade user de entities/user.dart
       return _userFromFirebaseUser(user);
     } catch (e) {

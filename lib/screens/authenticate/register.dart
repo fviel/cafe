@@ -100,15 +100,18 @@ class _RegisterState extends State<Register> {
                     setState(() => loading = true);
                     dynamic result = await _auth.registerWithEmailAndPassword(email:email, password:password);
                     if(result == null){
-                      setState(() {
-                        error = 'Falha ao registrar o usuário.';
-                        loading = false;
-                      });
+                      //adicionada esta validação para remover o erro de 'Unhandled Exception: setState() called after dispose():'
+                      if (this.mounted) {
+                        setState(() {
+                          error = 'Falha ao registrar o usuário.';
+                          loading = false;
+                        });
+                      }
                     }
-                    //se não falhou na criação do usuário, a Stream de _auth já notificou o Wrapper e já roteou o usuário pra home...
-                  } else {
-                    print('form inválido');
-                  }
+                  //   //se não falhou na criação do usuário, a Stream de _auth já notificou o Wrapper e já roteou o usuário pra home...
+                  // } else {
+                  //   print('form inválido');
+                   }
                 },
               ),
               SizedBox(height: 20.0),
