@@ -58,7 +58,7 @@ class AuthService {
           email: email.trim(), password: password.trim());
       FirebaseUser user = resultado.user;
 
-      print('registerWithEmailAndPassword - obtiver o user');
+      print('registerWithEmailAndPassword - obtive o user');
       //cria um document no firestore para o novo uid
       // DatabaseService dbService = await DatabaseService(uid: user.uid);
       // dbService.updateUserData('0', 'Novo membro', 100);

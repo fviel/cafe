@@ -22,6 +22,8 @@ class DatabaseService{
 
   //retorna uma lista de entidades Brew do snapshot de documentos da base
   List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot){
+    print('Primeiro doc: ${snapshot.documents.first}');
+
      return snapshot.documents.map((doc){
        return Brew(
          name: doc.data['name'] ?? '',
