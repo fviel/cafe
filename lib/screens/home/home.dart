@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cafe/services/database.dart';
 import 'package:cafe/screens/home/brew_list.dart';
+import 'package:cafe/entities/brew.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
+    return StreamProvider<List<Brew>>.value(
         value: DatabaseService().brewStream,
         child: Scaffold(
           backgroundColor: Colors.brown[100],
