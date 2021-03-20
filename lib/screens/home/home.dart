@@ -16,6 +16,20 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    /**
+     * Método para exibir a aba da parte de baixo da tela
+     */
+    void _showSettingsPannel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: Text('bottom sheet'),
+            );
+          });
+    }
+
     return StreamProvider<List<Brew>>.value(
         value: DatabaseService().brewStream,
         child: Scaffold(
@@ -28,22 +42,42 @@ class _HomeState extends State<Home> {
             ),
             actions: <Widget>[
               FlatButton.icon(
-                  icon: Icon(Icons.person),
-                  label: Text('Sign out'),
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.brown[800],
+                    size: 20,
+                  ),
+                  label: Text('Sign out',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.brown[800],
+                      )),
                   onPressed: () async {
                     dynamic result = await _auth.signOut();
                     if (result == null) {
-                      print('SignOut anônimo realizado com sucesso!');
+                      print('SignOut realizado com sucesso!');
                     } else {
                       print('Ocorreu um erro no signOut.');
                       print(result.uid);
                     }
                   }),
+              FlatButton.icon(
+                  icon: Icon(
+                    Icons.settings,
+                    color: Colors.brown[800],
+                    size: 20,
+                  ),
+                  label: Text('Config',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.brown[800],
+                      )),
+                  onPressed: () async {
+                    _showSettingsPannel();
+                  }),
             ],
           ),
           body: BrewList(),
-
-        )
-    );
+        ));
   }
 }
