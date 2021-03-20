@@ -1,10 +1,11 @@
 import 'package:cafe/services/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cafe/services/database.dart';
 import 'package:cafe/screens/home/brew_list.dart';
 import 'package:cafe/entities/brew.dart';
+import 'package:cafe/screens/home/settings_form.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -25,9 +26,9 @@ class _HomeState extends State<Home> {
           builder: (context) {
             return Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: Text('bottom sheet'),
-            );
-          });
+              child: SettingsForm(),
+          );
+    });
     }
 
     return StreamProvider<List<Brew>>.value(
