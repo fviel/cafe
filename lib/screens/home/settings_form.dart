@@ -11,8 +11,6 @@ class SettingsForm extends StatefulWidget {
 }
 
 class _SettingsFormState extends State<SettingsForm> {
-
-
   //essa globalkey ao form deste widget
   final _formKey = GlobalKey<FormState>();
   final List<String> sugars = ['0', '1', '2', '3', '4'];
@@ -34,7 +32,7 @@ class _SettingsFormState extends State<SettingsForm> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             //ok, se tem dados, então vamos usar isso
-            UserData userDataLocal  = snapshot.data;
+            UserData userDataLocal = snapshot.data;
             return Form(
                 key: _formKey,
                 child: Column(children: <Widget>[
@@ -47,12 +45,16 @@ class _SettingsFormState extends State<SettingsForm> {
                     height: 20.0,
                   ),
                   TextFormField(
-                      decoration: textInputDecorationFernando.copyWith(hintText: 'Name'),
-                      //validator é a função que valida o campo
-                      validator: (val) =>val.isEmpty ? 'Please inform a name' : null,
-                      onChanged: (val) {setState(() => _currentName = val);},
-                      initialValue: userDataLocal.name,
-                      ),
+                    decoration:
+                        textInputDecorationFernando.copyWith(hintText: 'Name'),
+                    //validator é a função que valida o campo
+                    validator: (val) =>
+                        val.isEmpty ? 'Please inform a name' : null,
+                    onChanged: (val) {
+                      setState(() => _currentName = val);
+                    },
+                    initialValue: userDataLocal.name,
+                  ),
                   SizedBox(
                     height: 20.0,
                   ),
@@ -71,13 +73,16 @@ class _SettingsFormState extends State<SettingsForm> {
                     height: 20.0,
                   ),
                   Slider(
-                    onChanged: (val) =>setState(() => _currentStrength = val.round()),
-                    value: (_currentStrength ?? userDataLocal.strength).toDouble(),
+                    onChanged: (val) =>
+                        setState(() => _currentStrength = val.round()),
+                    value:
+                        (_currentStrength ?? userDataLocal.strength).toDouble(),
                     min: 100.0,
                     max: 900.0,
                     divisions: 8,
                     //passei o valor de strength dentro, pra mudar a cor do componente
-                    activeColor: Colors.brown[_currentStrength ?? userDataLocal.strength],
+                    activeColor: Colors
+                        .brown[_currentStrength ?? userDataLocal.strength],
                     inactiveColor: Colors.brown[100],
                   ),
                   SizedBox(
@@ -85,23 +90,36 @@ class _SettingsFormState extends State<SettingsForm> {
                   ),
                   RaisedButton(
                     color: Colors.pink[400],
-                    child: Text('Update',
+                    child: Text(
+                      'Update',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
                     onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        print('form da aba de baixo válido');
+
+                        await DatabaseService(uid: userLocal.uid).updateUserData(
+                            _currentSugars ?? userDataLocal.sugars,
+                            _currentName ?? userDataLocal.name ,
+                            _currentStrength ?? userDataLocal.strength);
+                        //esconde a aba inferior
+                        Navigator.pop(context);
+                      } else {
+                        print('form da aba de baixo inválido');
+                      }
+
                       print('_currentName: ${_currentName}');
                       print('_currentSugars: ${_currentSugars}');
                       print('_currentStrength: ${_currentStrength}');
                     },
                   ),
-                ]
-                )
-            );
-          } else { // esse  else é do if lá do topo do método
-              //se não tem dados, exibe o loading
-              return Loading();
+                ]));
+          } else {
+            // esse  else é do if lá do topo do método
+            //se não tem dados, exibe o loading
+            return Loading();
           }
         });
   }

@@ -13,7 +13,7 @@ class _BrewListState extends State<BrewList> {
   @override
   Widget build(BuildContext context) {
 
-    final brews = Provider.of<List<Brew>>(context);
+    final brews = Provider.of<List<Brew>>(context) ?? [];
     brews.forEach((brew) {
       print(brew.name);
       print(brew.sugars);
@@ -21,6 +21,7 @@ class _BrewListState extends State<BrewList> {
     });
 
 
+    //Retorna a lista de brews, cada um vira um card BrewTile
     return ListView.builder(
       itemCount:brews.length,
       itemBuilder: (context, index){
