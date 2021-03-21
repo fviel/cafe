@@ -46,7 +46,7 @@ class DatabaseService {
   //   //obtém o document do uid logado para poder usar na aba inferior
   //   return brewCollection.document(uid).snapshots();
   // }
-  Stream<UserData> get userData {
+  Stream<UserData> get userDataStream {
     //já mapeia o DocumentSnapshot num UserData que eu criei, usando o método abaixo
     return brewCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
