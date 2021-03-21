@@ -60,7 +60,7 @@ class _SettingsFormState extends State<SettingsForm> {
             max: 900.0,
             divisions: 8,
             //passei o valor de strength dentro, pra mudar a cor do componente
-            activeColor: Colors.brown[_currentStrength ?? 100.00],
+            activeColor: Colors.brown[_currentStrength ?? 100],
             inactiveColor: Colors.brown[100],
           ),
           SizedBox(
