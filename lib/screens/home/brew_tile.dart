@@ -17,6 +17,7 @@ class BrewTile extends StatelessWidget {
           leading: CircleAvatar(
             radius: 25,
             backgroundColor: Colors.brown[brew.strength],
+            backgroundImage: AssetImage('assets/images/coffee_icon.png'),
           ),
             title: Text(brew.name),
           subtitle: brew.sugars == '0' ? Text('Takes no sugar') :  brew.sugars == '1' ? Text('Takes ${brew.sugars} only one sugar') : Text('Takes ${brew.sugars} sugars'),
