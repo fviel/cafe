@@ -101,7 +101,7 @@ class _SignInState extends State<SignIn> {
                     // dynamic result = await _auth.signInAnon();
                     dynamic result = await _auth.siginWithEmailAndPassword(email: email, password: password);
                     if (result == null) {
-                      setState(() => error = 'Não é possível fazer o signin com estas credenciais.');
+                      setState(() => error = 'Não foi possível fazer o signin com estas credenciais.');
                       setState(() => loading = false);
                     }
                   } else {
