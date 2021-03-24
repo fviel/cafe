@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
             backgroundColor: Colors.brown[400],
             elevation: 0.0,
             title: Text(
-              'Home Brew Crew',
+              'Home Brew Crew ',
             ),
             actions: <Widget>[
               FlatButton.icon(
